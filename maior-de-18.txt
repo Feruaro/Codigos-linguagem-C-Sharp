@@ -1,0 +1,26 @@
+
+using System;
+
+namespace DesafiosG2{
+    
+    class Program{
+
+        static void Main(string[] args){
+
+            // Faça um aplicativo que exiba quantas pessoas possuem mais de 18 anos. O algoritmo deverá ler a idade de 10 pessoas.
+
+            Int32 idade, qntd = 0;
+
+            for(int i=0; i<10; i++){
+                Console.WriteLine("Informe a idade da pessoa {0}:", i+1);
+                idade = Int32.Parse(Console.ReadLine());
+                Console.Clear();
+
+                if(idade > 18) qntd++; 
+            }
+
+            Console.WriteLine("A quantidade de pessoas com mais de 18 anos é {0}", qntd);
+            
+        }
+    }
+}

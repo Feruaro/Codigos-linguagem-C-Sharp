@@ -1,0 +1,118 @@
+
+
+// classe main
+
+using System;
+using static Calculadora.Calculadora;
+
+namespace Calculadora{
+
+    class Program{
+
+        static void Main(string[] args){
+
+            Calculadora calc = new Calculadora();
+        }
+    }
+}
+
+
+
+
+// classe calculadora
+
+
+using System;
+
+namespace Calculadora{
+
+    public class Calculadora{
+
+        private float num1, num2, resultado;
+        private int op, x, r;
+
+        public Calculadora(){
+            MenuCalculadora();           
+        }
+
+        public void MenuCalculadora(){
+            
+            this.num1 = MenuNum1();
+            this.op = MenuOperador();
+            this.num2 = MenuNum2();
+            this.r = 2;
+            CalcularResultado();          
+            
+            do{
+                ValidaNumero:
+                    Console.WriteLine("\n----------MENU----------");
+                    Console.WriteLine("\n1-Continuar calculando \n2-limpar calculadora \n3-Sair");
+                    Console.Write("\nInforme o número: ");
+                    this.r = int.Parse(Console.ReadLine());
+                    
+                    if(this.r < 1 || this.r > 3){
+                        Console.Clear();
+                        Console.WriteLine("Número informando inválido! Tente novamente..");
+                        goto ValidaNumero;
+                    } 
+                    else if(this.r == 1 || this.r == 2) MenuCalculadora2();
+
+            }while(this.r == 1 || this.r == 2);
+        }
+
+        public float MenuNum1(){
+            
+            Console.Write("Informe o número 1: ");
+            this.num1 = float.Parse(Console.ReadLine());
+            return this.num1;
+        }
+
+        public float MenuNum2(){
+            
+            Console.Write("\nInforme o número 2: ");
+            this.num2 = float.Parse(Console.ReadLine());
+            return this.num2;
+        }
+        
+        public int MenuOperador(){
+
+            Console.WriteLine("\n1-Soma \n2-Subtração \n3-Multiplicação \n4-Divisão \n5-Resto");
+            Console.Write("\nInforme a operação desejada: ");
+            this.x = int.Parse(Console.ReadLine());
+            return this.x;
+        }
+
+        public void CalcularResultado(){
+
+            switch (op){
+                case 1: this.resultado = this.num1 + this.num2; break;
+                case 2: this.resultado = this.num1 - this.num2; break;
+                case 3: this.resultado = this.num1 * this.num2; break;
+                case 4: this.resultado = this.num1 / this.num2; break;
+                case 5: this.resultado = this.num1 % this.num2; break;
+                default: Console.WriteLine("Número inválido!"); break;
+            }
+
+            Console.Clear();
+            if (this.r == 1) Console.WriteLine("\nNovo Resultado = {0}", this.resultado);
+            else if(this.r == 2) Console.WriteLine("\nResultado = {0}", this.resultado);
+        }
+
+        public void MenuCalculadora2(){
+            
+            Console.Clear();
+
+            if(this.r == 1){
+                Console.WriteLine("-----Continuar calculando----- \n\nResultado = {0}", resultado);
+                this.num1 = resultado;
+            } else{
+                Console.WriteLine("-----Limpando calculadora-----\n");
+                this.num1 = MenuNum1();
+            }
+
+            this.op = MenuOperador();
+            this.num2 = MenuNum2();
+            CalcularResultado(); 
+        }
+    }
+}

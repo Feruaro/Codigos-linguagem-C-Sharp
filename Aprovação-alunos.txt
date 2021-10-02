@@ -1,0 +1,94 @@
+
+
+// class Main
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using static Escola.Aluno;
+
+namespace Escola{
+
+    class Program{
+
+        static void Main(string[] args){
+
+           Aluno aluno1 = new Aluno();
+        }
+    }
+}
+
+
+
+// class Aluno
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Escola{
+
+    public class Aluno{
+
+        private string nome, sobrenome, nomeCompl;
+        private float nota1, nota2, nota3, media;
+        private int r;
+
+        public Aluno(){
+
+            Console.WriteLine("Nome do aluno:");
+            this.nome = Console.ReadLine();
+            Console.WriteLine("Sobrenome do aluno:");
+            this.sobrenome = Console.ReadLine();
+            Console.WriteLine("Informe a nota 1:");
+            this.nota1 = float.Parse(Console.ReadLine());
+            Console.WriteLine("Informe a nota 2:");
+            this.nota2 = float.Parse(Console.ReadLine());
+            Console.WriteLine("Informe a nota 3:");
+            this.nota3 = float.Parse(Console.ReadLine());
+
+            VerificarAprovacao();
+        }
+
+        public void VerificarAprovacao(){
+            
+            this.media = CalcularMedia();
+            this.nomeCompl = ConcatenacaoNome();
+
+            Console.Clear();
+
+            if(this.media >= 6){
+                Console.WriteLine("{0} APROVADO(A)", this.nomeCompl);   
+                if(this.media == 10) Console.WriteLine("Parabéns!!");
+                GerarDiploma();                 
+            } else {
+                Console.WriteLine("{0} REPROVADO(A)", this.nomeCompl);
+            }           
+        }
+
+        public float CalcularMedia(){           
+           return (this.nota1 + this.nota2 + this.nota3) / 3; 
+        }
+
+        public string ConcatenacaoNome(){
+            return this.nome + " " + this.sobrenome;
+        }
+
+        public void GerarDiploma(){
+
+            Console.WriteLine("Gostaria de gerar diploma? (1-sim 2-não)");
+            this.r = int.Parse(Console.ReadLine()); 
+            
+            if(r == 1){
+                Console.Clear();
+                Console.WriteLine("-----GERANDO DIPLOMA-----\n");
+                Console.WriteLine("Parabéns {0} por concluir o curso!!", this.nomeCompl);
+                Console.WriteLine("Nome: {0} \nMédia final: {1}", this.nomeCompl, this.media);
+            } 
+        }
+    }
+}

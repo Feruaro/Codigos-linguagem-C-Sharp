@@ -1,0 +1,24 @@
+
+using System;
+
+namespace DesafiosG2{
+    
+    class Program{
+
+        static void Main(string[] args){
+
+            // Elabore um aplicativo que calcule a idade média de 5 alunos.
+
+            float mediaIdade = 0;
+
+            for(int i=0; i<5; i++){               
+                Console.WriteLine("Informe a idade do aluno {0}:", i + 1);
+                mediaIdade += float.Parse(Console.ReadLine());
+            }
+
+            Console.Clear();
+            Console.WriteLine("Média das idades dos alunos: {0}", mediaIdade / 5);
+
+        }
+    }
+}

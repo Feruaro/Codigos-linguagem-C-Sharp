@@ -1,0 +1,94 @@
+
+// Class Main
+
+using System;
+using static DesafiosG2.Aluno;
+
+namespace DesafiosG2{
+    
+    class Program{
+
+        static void Main(string[] args){
+
+            /*Faça um aplicativo que leia a nota e a matrícula de dez alunos. 
+              Mostre a matrícula do aluno com a nota mais alta e do aluno com a nota mais baixa.
+	      Comandos Obrigatórios:  While ou for, crie classe Aluno para armazenar a matrícula e a nota.*/
+
+            Aluno aluno = new Aluno();
+            
+        }
+    }
+}
+
+
+
+// Class Aluno
+
+using System;
+
+namespace DesafiosG2{
+    
+    public class Aluno{
+
+        /*Faça um aplicativo que leia a nota e a matrícula de dez alunos. 
+          Mostre a matrícula do aluno com a nota mais alta e do aluno com a nota mais baixa.
+	  Comandos Obrigatórios:  While ou for, crie classe Aluno para armazenar a matrícula e a nota.*/
+
+        private Int32[] matricula = new Int32[10];
+        private Int32[] nota = new Int32[10];
+        private Int32 notaMa = 0, notaMe = 0, matMa, matMe;
+
+        public Aluno(){
+            DadosAlunos();
+        }
+
+        public void DadosAlunos(){
+
+            for(int i=0; i<10; i++){
+                Console.WriteLine("---------- ALUNO {0} ----------\n", i+1);
+            
+                Console.Write("Informe a matrícula: ");
+                matricula[i] = Int32.Parse(Console.ReadLine());
+            
+                Console.Write("Informe a nota: ");
+                nota[i] = Int32.Parse(Console.ReadLine());
+
+                Console.Clear();
+            }
+            
+            CalcularNotas();
+            ImprimirDados();
+        }
+
+        public void CalcularNotas(){
+
+            for(int i=0; i<10; i++){
+                if(notaMa < nota[i]){
+                    notaMa = nota[i];
+                    matMa = matricula[i];
+                }
+            }
+
+            notaMe = nota[0];
+            for(int j=1; j<10; j++){
+                if(notaMe > nota[j]){
+                    notaMe = nota[j];
+                    matMe = matricula[j];
+                }
+            }
+        }
+
+        public void ImprimirDados(){
+
+            Console.Clear();
+            Console.WriteLine("---------- Maior nota ----------\n");
+            Console.WriteLine("Matricula: {0}", matMa);
+            Console.WriteLine("Nota: {0}", notaMa);
+
+            Console.WriteLine("\n---------- Menor nota ----------\n");
+            Console.WriteLine("Matricula: {0}", matMe);
+            Console.WriteLine("Nota: {0}", notaMe);
+        }
+    }
+}
+

@@ -1,0 +1,62 @@
+using System;
+
+namespace DESAFIO1{
+
+    class Program{
+
+        static void Main(string[] args){
+
+            Inicio:
+
+                Console.WriteLine("Nome do aluno: ");
+                string nomeAluno = Console.ReadLine();
+                Console.Clear();
+
+                //entrada das 3 notas (garantindo que seja uma nota entre 0 e 10);           
+                Nota1:
+                    Console.WriteLine("Nota 1:");
+                    decimal nota1 = decimal.Parse(Console.ReadLine());
+                    Console.Clear();
+                    if(nota1 < 0 || nota1 > 10){
+                        Console.WriteLine("Nota informada inválida! Informar uma nota entre 0 a 10");
+                        goto Nota1;
+                    }
+                Nota2:     
+                    Console.WriteLine("Nota 2:");
+                    decimal nota2 = decimal.Parse(Console.ReadLine());
+                    Console.Clear();
+                    if(nota2 < 0 || nota2 > 10){
+                        Console.WriteLine("Nota informada inválida! Informar uma nota entre 0 a 10");
+                        goto Nota2;
+                    }                
+                Nota3:
+                    Console.WriteLine("Nota 3:");
+                    decimal nota3 = decimal.Parse(Console.ReadLine());
+                    Console.Clear();
+                    if(nota3 < 0 || nota3 > 10){
+                        Console.WriteLine("Nota informada inválida! Informar uma nota entre 0 a 10");
+                        goto Nota3;
+                    }
+
+                    //calcular média e arredondar para 2 casas decimais
+                    decimal media = (nota1 + nota2 + nota3) / 3;
+                    media = decimal.Round(media, 2);
+
+                    if(media >= 6){
+                        Console.WriteLine("ALUNO APROVADO!");
+                        if(media == 10){
+                            Console.WriteLine("PARABÉNS!!");
+                        }
+                    } else Console.WriteLine("ALUNO REPROVADO!");
+
+                    Console.WriteLine("Nome: {0} \nNota 1: {1} \nNota 2: {2} \nNota 3: {3} \nMédia: {4}", nomeAluno, nota1, nota2, nota3, media);
+                    Console.WriteLine("\n-------------------\n");
+                    Console.WriteLine("Gostaria de registrar outro aluno? (1-sim 2-não)");
+                    int r = int.Parse(Console.ReadLine());
+                    if(r == 1){
+                        Console.Clear();
+                        goto Inicio;               
+                    }
+        }
+    }
+}
